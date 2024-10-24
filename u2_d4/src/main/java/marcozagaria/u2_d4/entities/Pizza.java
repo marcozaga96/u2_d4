@@ -1,13 +1,24 @@
 package marcozagaria.u2_d4.entities;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.util.List;
 
 @Getter
+@Entity
+@Table(name = "pizza")
 public class Pizza extends Item {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String name;
-
+    @ManyToMany
+    @JoinTable(
+            name = "pizza_topping",
+            joinColumns = @JoinColumn(name = "pizza_id"),
+            inverseJoinColumns = @JoinColumn(name = "topping_id")
+    )
     private List<Topping> toppingList;
     private boolean isXl = false;
 

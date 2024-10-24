@@ -1,6 +1,5 @@
 package marcozagaria.u2_d4.entities;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -118,18 +117,4 @@ public class AppConfig {
         return toppings;
     }
 
-    @Bean("Tavolo1")
-    Table getTable1(@Value("${seat.price}") double seatPrice) {
-        return new Table(1, 5, true, seatPrice);
-    }
-
-    @Bean("Tavolo2")
-    Table getTable2(@Value("${seat.price}") double seatPrice) {
-        return new Table(2, 4, true, seatPrice);
-    }
-
-    @Bean("Tavolo3")
-    Table getTable3(@Value("${seat.price}") double seatPrice) {
-        return new Table(3, 8, true, seatPrice);
-    }
 }
