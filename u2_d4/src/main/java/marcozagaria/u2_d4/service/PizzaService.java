@@ -37,7 +37,7 @@ public class PizzaService {
         log.info("il drink " + newDrink.getName() + " è stato salvato correttamente!");
     }
 
-    public void saveMany(List<Topping> newTopping) {
+    public void saveAllTopping(List<Topping> newTopping) {
         for (Topping topping : newTopping) {
             try {
                 this.saveTopping(topping);
@@ -45,5 +45,20 @@ public class PizzaService {
                 log.error(ex.getMessage());
             }
         }
+    }
+
+    public void saveAllDrink(List<Drink> newDrink) {
+        for (Drink drink : newDrink) {
+            try {
+                this.saveDrink(drink);
+            } catch (Exception ex) {
+                log.error(ex.getMessage());
+            }
+        }
+    }
+    
+
+    public Topping findTopping(String name) {
+        return toppingRepository.findByName(name);
     }
 }

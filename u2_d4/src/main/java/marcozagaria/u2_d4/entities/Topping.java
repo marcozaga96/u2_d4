@@ -1,9 +1,9 @@
 package marcozagaria.u2_d4.entities;
 
-import jakarta.persistence.Table;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
 
 @Getter
 @Setter
@@ -18,6 +18,10 @@ public class Topping extends Item {
     public Topping(String name, int calories, double price) {
         super(calories, price);
         this.name = name;
+    }
+
+    public Topping() {
+        super();
     }
 
     @Override

@@ -1,9 +1,6 @@
 package marcozagaria.u2_d4;
 
-import marcozagaria.u2_d4.entities.AppConfig;
-import marcozagaria.u2_d4.entities.Menu;
-import marcozagaria.u2_d4.entities.Pizza;
-import marcozagaria.u2_d4.entities.Topping;
+import marcozagaria.u2_d4.entities.*;
 import marcozagaria.u2_d4.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -30,10 +27,33 @@ public class OrdersRunner implements CommandLineRunner {
         try {
             Menu m = (Menu) ctx.getBean("menu");
             m.printMenu();
-            List<Topping> toppings = Arrays.asList(appConfig.toppingTomatoBean(), appConfig.toppingCheeseBean(), appConfig.toppingHamBean(), appConfig.toppingSalamiBean(), appConfig.toppingPineappleBean());
-            Pizza newPizza = new Pizza("margherita", toppings, false);
-            //pizzaService.saveMany(toppings);
-            pizzaService.savePizza(newPizza);
+
+            Topping topping1 = pizzaService.findTopping("Tomato");
+            Topping topping2 = pizzaService.findTopping("Cheese");
+            Topping topping3 = pizzaService.findTopping("Ham");
+            Topping topping4 = pizzaService.findTopping("Salami");
+            Topping topping5 = pizzaService.findTopping("Pineapple");
+
+            List<Topping> alltoppings = Arrays.asList(appConfig.toppingTomatoBean(), appConfig.toppingCheeseBean(), appConfig.toppingHamBean(), appConfig.toppingSalamiBean(), appConfig.toppingPineappleBean());
+            //pizzaService.saveAllTopping(alltoppings);
+
+            List<Topping> toppingsMargherita = Arrays.asList(topping1, topping2);
+            List<Topping> toppingshawaiian = Arrays.asList(topping1, topping2, topping5);
+            List<Topping> toppingssalami = Arrays.asList(topping1, topping2, topping4);
+            List<Topping> toppingssalamiXl = Arrays.asList(topping1, topping2, topping3, topping4);
+
+            List<Drink> drinks = Arrays.asList(appConfig.lemonadeBean(), appConfig.waterBean(), appConfig.lemonadeBean());
+            //pizzaService.saveAllDrink(drinks);
+
+            Pizza newPizzaMargherita = new Pizza("margherita", toppingsMargherita, false);
+            Pizza newPizzahawaiian = new Pizza("hawaiian", toppingsMargherita, false);
+            Pizza newPizzasalami = new Pizza("salami", toppingsMargherita, false);
+            Pizza newPizzasalamiXl = new Pizza("salami_xl", toppingsMargherita, true);
+            //pizzaService.savePizza(newPizzahawaiian);
+            //pizzaService.savePizza(newPizzasalami);
+            //pizzaService.savePizza(newPizzasalamiXl);
+            //pizzaService.savePizza(newPizzaMargherita);
+
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         } finally {

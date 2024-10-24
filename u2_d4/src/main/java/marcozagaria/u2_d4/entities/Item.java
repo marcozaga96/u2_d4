@@ -13,4 +13,7 @@ public abstract class Item {
         this.price = price;
     }
 
+    public Item() {
+
+    }
 }

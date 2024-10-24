@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ToppingRepository extends JpaRepository<Topping, Integer> {
+    Topping findByName(String name);
 }
